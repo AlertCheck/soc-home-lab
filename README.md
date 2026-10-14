@@ -124,7 +124,6 @@ See [docs/architecture.md](docs/architecture.md) for the network layout and reso
 - The WSL2 IP changes on every restart, so static port forwarding breaks silently. Recreating the `netsh portproxy` rules with a script fixed it.
 - `networkingMode=mirrored` is not available on Windows 10, so NAT plus portproxy is the only way for VMs to reach Wazuh inside WSL2.
 - With 16 GB of RAM the lab has almost no headroom; VMs have to be started selectively.
-- Detection logic must be validated against real events: the `LogonType` seen in Event 4625 depends on whether NLA is enabled.
 
 ## Roadmap
 
