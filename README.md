@@ -1,0 +1,108 @@
+# SOC Home Lab
+
+![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)
+![SIEM: Wazuh 4.9.2](https://img.shields.io/badge/SIEM-Wazuh%204.9.2-blue)
+![Status: in progress](https://img.shields.io/badge/status-in%20progress-orange)
+
+A hands-on **blue team** SOC lab: deploy a SIEM, collect telemetry from a Windows target, attack it from Kali, write detections, and document investigations.
+
+## Goals
+
+- Practice the full cycle: **attack → telemetry → detection → investigation → lessons learned**.
+- Build a portfolio of detections (Wazuh rules) and incident write-ups in a format close to real SOC work.
+- Map every observed TTP to [MITRE ATT&CK](https://attack.mitre.org/).
+
+## Architecture
+
+```mermaid
+flowchart LR
+    subgraph HOST["Windows 10 Pro host"]
+        direction TB
+        subgraph WSL["WSL2 Ubuntu 24.04"]
+            WZ["Wazuh Indexer + Manager + Dashboard"]
+        end
+        PP["netsh portproxy<br/>443 / 1514 / 1515 / 55000"]
+        subgraph VMW["VMware Workstation Player"]
+            WIN["Win10 Target<br/>192.168.230.128<br/>Sysmon + Wazuh Agent"]
+            KALI["Kali Attacker<br/>192.168.230.x"]
+        end
+        PP --> WZ
+    end
+
+    KALI -- "RDP brute force :3389" --> WIN
+    WIN -- "agent events :1514" --> PP
+    ANALYST(("Analyst")) -- "https://localhost" --> PP
+```
+
+Details: [docs/architecture.md](docs/architecture.md).
+
+## Tech Stack
+
+| Layer | Component | Version |
+|-------|-----------|---------|
+| SIEM | Wazuh (Indexer, Manager, Dashboard) | 4.9.2 |
+| SIEM platform | WSL2, Ubuntu | 24.04 |
+| Telemetry | Sysmon + SwiftOnSecurity config | 15.22 |
+| Telemetry | Wazuh Agent | 4.9.2 |
+| Hypervisor | VMware Workstation Player | 17.6.3 |
+| Target | Windows 10 Pro | 22H2 |
+| Attacker | Kali Linux | 2026.1 |
+
+Full list with links: [docs/tools.md](docs/tools.md).
+
+## Progress
+
+- [x] Wazuh 4.9.2 deployed in WSL2 (Ubuntu 24.04, systemd enabled)
+- [x] WSL2 resource limits via `.wslconfig` (8 GB RAM, 4 CPUs, swap on a dedicated disk)
+- [x] Host-to-WSL port forwarding automated ([scripts/update-portproxy.ps1](scripts/update-portproxy.ps1))
+- [x] VMware Workstation Player, isolated VMnet1 network (Host-Only)
+- [x] Windows 10 Target: Sysmon + SwiftOnSecurity, Wazuh Agent, PowerShell Script Block Logging, Defender
+- [x] RDP enabled on the Target (3389)
+- [x] Kali Attacker deployed
+- [x] First detection: [detections/rdp-brute-force.xml](detections/rdp-brute-force.xml)
+- [x] First investigation: [investigations/rdp-brute-force.md](investigations/rdp-brute-force.md)
+
+## Detections and Investigations
+
+| Scenario | Detection | Investigation | ATT&CK |
+|----------|-----------|---------------|--------|
+| RDP brute force | [rdp-brute-force.xml](detections/rdp-brute-force.xml) | [rdp-brute-force.md](investigations/rdp-brute-force.md) | T1110, T1021.001 |
+
+## Repository Structure
+
+```text
+soc-home-lab/
+├── README.md
+├── LICENSE
+├── docs/
+│   ├── architecture.md
+│   └── tools.md
+├── detections/
+│   └── rdp-brute-force.xml
+├── investigations/
+│   └── rdp-brute-force.md
+├── screenshots/
+└── scripts/
+    └── update-portproxy.ps1
+```
+
+## Roadmap
+
+- [ ] Detection and write-up for suspicious PowerShell execution (Script Block Logging, T1059.001)
+- [ ] Detection for persistence creation (Run keys, scheduled tasks; T1547, T1053)
+- [ ] Detection for LSASS dumping via Sysmon Event ID 10 (T1003.001)
+- [ ] Atomic Red Team integration for reproducible tests
+- [ ] Convert rules to Sigma format
+- [ ] Add a Linux target with a Wazuh agent
+- [ ] Active Response: block the source of a brute-force attack
+- [ ] Wazuh dashboards for lab scenarios
+
+## Lab Safety
+
+- The VMnet1 network is isolated (Host-Only); the targets have no outbound access through this segment.
+- All passwords and secrets in this repository are replaced with `<REDACTED>`.
+- Attacks are performed **only** against my own virtual machines.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
