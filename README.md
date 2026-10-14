@@ -6,6 +6,10 @@
 
 A hands-on **blue team** SOC lab: deploy a SIEM, collect telemetry from a Windows target, attack it from Kali, write detections, and document investigations.
 
+## Overview
+
+This repository documents a home SOC lab built on a single workstation. A Wazuh SIEM runs in WSL2, a Windows 10 target streams Sysmon and Security telemetry to it, and a Kali machine generates attacks. Each attack scenario ends with a Wazuh detection and a written investigation.
+
 ## Goals
 
 - Practice the full cycle: **attack → telemetry → detection → investigation → lessons learned**.
