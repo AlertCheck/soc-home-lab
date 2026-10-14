@@ -1,7 +1,10 @@
-# Screenshots
+## Screenshots
 
-Evidence screenshots for the investigations in [`../investigations/`](../investigations/).
+More screenshots are in [screenshots/](screenshots/).
 
-Naming convention: `<scenario>-<short-description>.png`, for example `rdp-bf-alerts-overview.png`.
+<!--
+![Wazuh Dashboard overview](screenshots/wazuh-dashboard-overview.png)
+![RDP brute force alerts](screenshots/rdp-bf-alerts-overview.png)
+-->
 
-Before committing a screenshot, make sure passwords, tokens and personal data are masked.
+_Screenshots will be added as scenarios are completed._
