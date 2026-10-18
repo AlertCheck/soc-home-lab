@@ -70,9 +70,7 @@ Full list with links: [docs/tools.md](docs/tools.md).
 
 | Scenario | Detection | Investigation | ATT&CK |
 |----------|-----------|---------------|--------|
-| RDP brute force | [rdp-brute-force.xml](detections/rdp-brute-force.xml) | [rdp-brute-force.md](investigations/rdp-brute-force.md) | T1110, T1021.001 |
-
-## MITRE ATT&CK Mapping
+| RDP brute force | [rdp-brute-force.xml](detections/rdp-brute-force.xml) | [rdp-brute-force.md](investigations/rdp-brute-force.md) | T1110, T1110.001 |
 
 ## MITRE ATT&CK Mapping
 
