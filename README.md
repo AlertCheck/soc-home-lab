@@ -74,13 +74,11 @@ Full list with links: [docs/tools.md](docs/tools.md).
 
 ## MITRE ATT&CK Mapping
 
+## MITRE ATT&CK Mapping
+
 | Technique | ID | Scenario | Detection rule |
 |-----------|----|----------|----------------|
-| Technique | ID | Scenario | Detection rule |
-|---|---|---|---|
-| Brute Force: Password Guessing | T1110.001 | RDP brute force | 100001 |
-| Remote Services: RDP | T1021.001 | RDP brute force | 60122, 100001 |
-
+| Brute Force: Password Guessing | [T1110.001](https://attack.mitre.org/techniques/T1110/001/) | RDP brute force | 100001 |
 
 ## Repository Structure
 
