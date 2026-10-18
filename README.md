@@ -76,9 +76,11 @@ Full list with links: [docs/tools.md](docs/tools.md).
 
 | Technique | ID | Scenario | Detection rule |
 |-----------|----|----------|----------------|
-| Brute Force: Password Guessing | [T1110.001](https://attack.mitre.org/techniques/T1110/001/) | RDP brute force | 100101 |
-| Remote Services: Remote Desktop Protocol | [T1021.001](https://attack.mitre.org/techniques/T1021/001/) | RDP brute force | 100100, 100101, 100102 |
-| Valid Accounts | [T1078](https://attack.mitre.org/techniques/T1078/) | RDP logon after brute force | 100102 |
+| Technique | ID | Scenario | Detection rule |
+|---|---|---|---|
+| Brute Force: Password Guessing | T1110.001 | RDP brute force | 100001 |
+| Remote Services: RDP | T1021.001 | RDP brute force | 60122, 100001 |
+
 
 ## Repository Structure
 
