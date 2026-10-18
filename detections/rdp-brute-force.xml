@@ -1,4 +1,48 @@
-<group name="windows,authentication_failed,brute_force">
+<!--
+  Detection : RDP Brute Force (Windows)
+  Lab       : soc-home-lab (Wazuh 4.9.2, Win10 Target + Sysmon)
+  Install   : /var/ossec/etc/rules/local_rules.xml
+              then: systemctl restart wazuh-manager
+  Rule ID   : 100001 (custom range 100000+)
+
+  Description:
+    100001  Correlation rule. Fires when 5 or more events matching the
+            built-in rule 60122 (Logon Failure - Unknown user or bad
+            password) are seen within 300 seconds. Level 12.
+
+  MITRE ATT&CK:
+    T1110      Brute Force
+    T1110.001  Password Guessing
+
+  Why override the MITRE mapping:
+    Wazuh's built-in rule 60122 is tagged with T1531 (Account Access
+    Removal) by default, which does not describe a failed-logon event.
+    This custom rule re-tags the correlated activity with the correct
+    Credential Access techniques (T1110 / T1110.001) instead of
+    inheriting the built-in rule's tag.
+
+  Validated against a real run:
+    - Attack: Hydra (rdp module) from Kali against Target-host over RDP.
+    - Target logs showed Event ID 4625 with LogonType 3 (Network), not
+      LogonType 10 (RemoteInteractive). With NLA enabled on the target,
+      Windows logs the pre-authentication failure as LogonType 3 because
+      a full RDP session is never established.
+    - Hydra's RDP module could not complete the run against this target
+      ("all children were disabled due to too many connection errors");
+      no successful logon (Event 4624) was observed in this run.
+    - This rule still fired correctly on the failed-logon burst, which is
+      the detection goal regardless of whether the brute force succeeds.
+
+  Investigation: ../investigations/rdp-brute-force.md
+
+  Future work:
+    - A follow-up rule for a successful logon (Event 4624, LogonType 3 or
+      10) shortly after this one fires would flag a likely compromise.
+      Not included here yet because it has not been validated against a
+      real successful logon in this lab.
+-->
+<group name="windows,rdp,authentication_failures,custom,">
+
   <rule id="100001" level="12" frequency="5" timeframe="300">
     <if_matched_sid>60122</if_matched_sid>
     <description>Custom: RDP Brute Force Attack Detected (MITRE T1110)</description>
@@ -6,6 +50,7 @@
       <id>T1110</id>
       <id>T1110.001</id>
     </mitre>
-    <group>credential_access</group>
+    <group>brute_force,credential_access,</group>
   </rule>
+
 </group>
