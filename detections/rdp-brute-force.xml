@@ -1,1 +1,11 @@
-
+<group name="windows,authentication_failed,brute_force">
+  <rule id="100001" level="12" frequency="5" timeframe="300">
+    <if_matched_sid>60122</if_matched_sid>
+    <description>Custom: RDP Brute Force Attack Detected (MITRE T1110)</description>
+    <mitre>
+      <id>T1110</id>
+      <id>T1110.001</id>
+    </mitre>
+    <group>credential_access</group>
+  </rule>
+</group>
