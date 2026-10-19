@@ -47,7 +47,7 @@ flowchart TB
 | DESKTOP-HOST | Hypervisor, port relay | 192.168.230.1 (VMnet1) | 4C/8T, 16 GB | Windows 10 Pro 22H2 |
 | WSL2 | Wazuh Indexer + Manager + Dashboard | dynamic | up to 8 GB, 4 CPUs | Ubuntu 24.04 |
 | Win10 Target | Victim, telemetry source | 192.168.230.128 | 4 GB, 2 CPUs, 60 GB | Windows 10 Pro 22H2 |
-| Kali Attacker | Attack generation | 192.168.230.x | 2 GB, 2 CPUs | Kali 2026.1 |
+| Kali Attacker | Attack generation | 192.168.230.129 | 2 GB, 2 CPUs | Kali 2026.1 |
 
 ## 4. Data Flows
 
