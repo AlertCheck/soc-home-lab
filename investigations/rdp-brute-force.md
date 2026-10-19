@@ -21,14 +21,14 @@ Wazuh correlated the resulting burst of failed logons with custom rule **100001*
 
 | Time | Source | Event |
 |------|--------|-------|
-| `<time>` | Kali | Hydra started against `rdp://192.168.230.128` |
-| `<time>` | Target (Security log) | First Event 4625, LogonType 3, from 192.168.230.129 |
-| `<time>` | Wazuh | Rule 60122 fires on each failed logon |
-| `<time>` | Wazuh | Rule 100001 fires (5th failure within 300s) — 1st occurrence |
-| `<time>` | Wazuh | Rule 100001 fires — 2nd occurrence |
-| `<time>` | Kali / Hydra | Hydra aborts: `all children were disabled due to too many connection errors`; `0 of 1 target completed, 0 valid password found` |
+| 07:37:45 (Kali local clock, unsynced — see Lessons Learned) | Kali | Hydra started against `rdp://192.168.230.128` |
+| 15:31:53.603 (Wazuh Dashboard time) | Target (Security log) | First Event 4625 in the observed burst, LogonType 3, from 192.168.230.129 |
+| 15:31:53 – 15:32:17 (Wazuh Dashboard time) | Wazuh | Rule 60122 fires on each failed logon in the burst (4+ hits observed in this window) |
+| 07:38:49 (Kali local clock, unsynced) | Kali / Hydra | Hydra aborts: `all children were disabled due to too many connection errors`; `0 of 1 target completed, 0 valid password found` |
+| 16:58:44.208 (Wazuh Dashboard time) | Wazuh | Rule 100001 fires — 1st occurrence (5+ failures within 300s), from a later retry of the attack run during testing |
+| 16:59:14.496 (Wazuh Dashboard time) | Wazuh | Rule 100001 fires — 2nd occurrence |
 
-> Note: the Kali terminal clock showed a `-0400` offset during this run while the Wazuh Dashboard and Windows Event Viewer used a different timezone. Times above should be normalized to UTC (or one consistent zone) before publishing — see Lessons Learned.
+> Note: the Kali terminal clock was unsynced during this test (see Lessons Learned), so Kali-local timestamps above do not line up numerically with Wazuh Dashboard time — both are shown as recorded, in their own clock. The gap between the 15:31–15:32 failed-logon burst and the 16:58–16:59 rule 100001 firings reflects the attack being re-run during testing until the correlation rule's 5-failures-in-300-seconds threshold was met, rather than a single uninterrupted run.
 
 ## 3. TTP (MITRE ATT&CK)
 
