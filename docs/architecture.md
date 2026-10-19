@@ -38,7 +38,7 @@ flowchart TB
 |---------|------|------------|---------|
 | Host LAN | Physical network | DHCP from the home network | Windows host |
 | WSL2 | NAT (WSL virtual switch) | Dynamic IP, changes on every WSL restart | Ubuntu 24.04 running the Wazuh stack |
-| VMnet1 | VMware Host-Only | 192.168.230.0/24 | Host (.1), Win10 Target (.128), Kali (.x) |
+| VMnet1 | VMware Host-Only | 192.168.230.0/24 | Host (.1), Win10 Target (.128), Kali (.129) |
 
 ## 3. Hosts and Roles
 
