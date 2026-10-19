@@ -155,7 +155,7 @@ sudo grep -A 8 'id="100002"' /var/ossec/etc/rules/local_rules.xml
 | 91837 (built-in) | 4 | Script block text matches a generic `Get-Content -Stream`/`Invoke-Expression` pattern |
 | 100002 (custom) | 12 | Script block text (via rule 91837) matches `DownloadString`, `EncodedCommand`, `FromBase64String`, or `Invoke-Expression` |
 
-**Assessment:** rule 100002 fired once during the test run, confirming detection worked at the script-block level even though the download itself never completed.
+**Assessment:** rule 100002 fired twice during the run — once for each command variant (`IEX ...` direct and `powershell.exe -Command "..."`). Since this is a simple single-event match rule (no `frequency`/`timeframe`), each matching script block produces its own alert with `firedtimes: 1`, rather than one counter accumulating across both.
 
 ## 7. Lessons Learned
 
