@@ -84,7 +84,6 @@ Full list with links: [docs/tools.md](docs/tools.md).
 
 ## Repository Structure
 
-```text
 soc-home-lab/
 ├── README.md
 ├── LICENSE
@@ -92,13 +91,14 @@ soc-home-lab/
 │   ├── architecture.md
 │   └── tools.md
 ├── detections/
-│   └── rdp-brute-force.xml
+│   ├── rdp-brute-force.xml
+│   └── powershell-execution.xml
 ├── investigations/
-│   └── rdp-brute-force.md
+│   ├── rdp-brute-force.md
+│   └── powershell-execution.md
 ├── screenshots/
 └── scripts/
     └── update-portproxy.ps1
-```
 
 ## Getting Started
 
