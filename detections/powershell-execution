@@ -54,7 +54,7 @@
     <mitre>
       <id>T1059.001</id>
     </mitre>
-    <group>execution,</group>
+    <group>execution</group>
   </rule>
 
 </group>
