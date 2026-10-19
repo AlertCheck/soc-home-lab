@@ -129,7 +129,6 @@ See [docs/architecture.md](docs/architecture.md) for the network layout and reso
 
 ## Roadmap
 
-- [x] Detection and write-up for suspicious PowerShell execution (Script Block Logging, T1059.001)
 - [ ] Detection for persistence creation (Run keys, scheduled tasks; T1547, T1053)
 - [ ] Detection for LSASS dumping via Sysmon Event ID 10 (T1003.001)
 - [ ] Atomic Red Team integration for reproducible tests
