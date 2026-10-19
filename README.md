@@ -81,6 +81,7 @@ Full list with links: [docs/tools.md](docs/tools.md).
 |-----------|----|----------|----------------|
 | Brute Force: Password Guessing | [T1110.001](https://attack.mitre.org/techniques/T1110/001/) | RDP brute force | 100001 |
 | Command and Scripting Interpreter: PowerShell | [T1059.001](https://attack.mitre.org/techniques/T1059/001/) | PowerShell execution | 100002 |
+> **Note:** Rule100001also corrects the MITRE mapping for built-in rule60122(Impact -> Credential Access).
 
 ## Repository Structure
 
