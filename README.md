@@ -65,18 +65,22 @@ Full list with links: [docs/tools.md](docs/tools.md).
 - [x] Kali Attacker deployed
 - [x] First detection: [detections/rdp-brute-force.xml](detections/rdp-brute-force.xml)
 - [x] First investigation: [investigations/rdp-brute-force.md](investigations/rdp-brute-force.md)
+- [x] Second detection: [detections/powershell-execution.xml](detections/powershell-execution.xml)
+- [x] Second investigation: [investigations/powershell-execution.md](investigations/powershell-execution.md)
 
 ## Detections and Investigations
 
 | Scenario | Detection | Investigation | ATT&CK |
 |----------|-----------|---------------|--------|
 | RDP brute force | [rdp-brute-force.xml](detections/rdp-brute-force.xml) | [rdp-brute-force.md](investigations/rdp-brute-force.md) | T1110, T1110.001 |
+| PowerShell execution | [powershell-execution.xml](detections/powershell-execution.xml) | [powershell-execution.md](investigations/powershell-execution.md) | T1059.001 |
 
 ## MITRE ATT&CK Mapping
 
 | Technique | ID | Scenario | Detection rule |
 |-----------|----|----------|----------------|
 | Brute Force: Password Guessing | [T1110.001](https://attack.mitre.org/techniques/T1110/001/) | RDP brute force | 100001 |
+| Command and Scripting Interpreter: PowerShell | [T1059.001](https://attack.mitre.org/techniques/T1059/001/) | PowerShell execution | 100002 |
 
 ## Repository Structure
 
