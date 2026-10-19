@@ -28,7 +28,7 @@ flowchart LR
         PP["netsh portproxy<br/>443 / 1514 / 1515 / 55000"]
         subgraph VMW["VMware Workstation Player"]
             WIN["Win10 Target<br/>192.168.230.128<br/>Sysmon + Wazuh Agent"]
-            KALI["Kali Attacker<br/>192.168.230.x"]
+            KALI["Kali Attacker<br/>192.168.230.129"]
         end
         PP --> WZ
     end
