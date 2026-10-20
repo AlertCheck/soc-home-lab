@@ -1,1 +1,55 @@
+<!--
+  Detection : Scheduled Task Persistence (schtasks.exe)
+  Lab       : soc-home-lab (Wazuh 4.9.2, Win10 Target + Sysmon)
+  Install   : /var/ossec/etc/rules/local_rules.xml
+              then: systemctl restart wazuh-manager
+  Rule ID   : 100003 (custom range 100000+)
 
+  Description:
+    100003  Fires when a Sysmon process-creation event (Event ID 1,
+            matched via built-in rule 61603) has an originalFileName of
+            schtasks.exe — i.e., the Windows Task Scheduler command-line
+            tool was used to create, modify, or run a scheduled task.
+            Level 12.
+
+  MITRE ATT&CK:
+    T1053.005  Scheduled Task/Job: Scheduled Task
+
+  Validated against a real run:
+    - Command executed manually on the target (not via Kali — this
+      scenario, like the PowerShell one, simulates post-exploitation
+      activity by running the command directly on Target-host):
+        schtasks /create /tn "ScheduledTaskDemo" /tr "calc.exe" /sc onlogon /f
+    - This creates a task that launches calc.exe at the next interactive
+      logon. calc.exe is a harmless stand-in for a real payload in this
+      lab; /f forces creation without a confirmation prompt.
+    - Unlike the RDP and PowerShell scenarios, this command succeeded —
+      the task was actually created ("УСПЕХ. Запланированная задача
+      ... была успешно создана").
+    - Sysmon Event 1 recorded the process creation with the full command
+      line, parent process (powershell.exe), and user context
+      (DESKTOP-478GG5N\Target-host).
+    - Rule 100003 fired 3 times during testing (firedtimes: 3) — see the
+      investigation's Lessons Learned for context.
+
+  Investigation: ../investigations/scheduled-task-persistence.md
+
+  Future work:
+    - Add a complementary rule watching the Microsoft-Windows-TaskScheduler
+      operational log directly (Event ID 106 "task registered"), to cross-
+      check findings against the Sysmon-based detection here.
+    - Extend the field match beyond originalFileName to also catch
+      schtasks.exe invoked via a renamed binary or full path variations.
+-->
+<group name="windows,persistence,">
+
+  <rule id="100003" level="12">
+    <if_sid>61603</if_sid>
+    <field name="win.eventdata.originalFileName">schtasks.exe</field>
+    <description>Custom: Scheduled Task Creation Detected (MITRE T1053.005)</description>
+    <mitre>
+      <id>T1053.005</id>
+    </mitre>
+  </rule>
+
+</group>
