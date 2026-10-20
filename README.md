@@ -67,6 +67,8 @@ Full list with links: [docs/tools.md](docs/tools.md).
 - [x] First investigation: [investigations/rdp-brute-force.md](investigations/rdp-brute-force.md)
 - [x] Second detection: [detections/powershell-execution.xml](detections/powershell-execution.xml)
 - [x] Second investigation: [investigations/powershell-execution.md](investigations/powershell-execution.md)
+- [x] Third detection: [detections/scheduled-task-persistence.xml](detections/scheduled-task-persistence.xml)
+- [x] Third investigation: [investigations/scheduled-task-persistence.md](investigations/scheduled-task-persistence.md)
 
 ## Detections and Investigations
 
@@ -74,6 +76,7 @@ Full list with links: [docs/tools.md](docs/tools.md).
 |----------|-----------|---------------|--------|
 | RDP brute force | [rdp-brute-force.xml](detections/rdp-brute-force.xml) | [rdp-brute-force.md](investigations/rdp-brute-force.md) | T1110, T1110.001 |
 | PowerShell execution | [powershell-execution.xml](detections/powershell-execution.xml) | [powershell-execution.md](investigations/powershell-execution.md) | T1059.001 |
+| Scheduled task persistence | [scheduled-task-persistence.xml](detections/scheduled-task-persistence.xml) | [scheduled-task-persistence.md](investigations/scheduled-task-persistence.md) | T1053.005 |
 
 ## MITRE ATT&CK Mapping
 
@@ -81,6 +84,7 @@ Full list with links: [docs/tools.md](docs/tools.md).
 |-----------|----|----------|----------------|
 | Brute Force: Password Guessing | [T1110.001](https://attack.mitre.org/techniques/T1110/001/) | RDP brute force> **Note:** Rule 100001 (frequency-based) enriches the built-in rule 60122 with accurate MITRE mapping for brute force (T1110.001) and explicitly categorizes the alert as credential_access.
 | Command and Scripting Interpreter: PowerShell | [T1059.001](https://attack.mitre.org/techniques/T1059/001/) | PowerShell execution | 100002 |
+| Scheduled Task/Job: Scheduled Task | [T1053.005](https://attack.mitre.org/techniques/T1053/005/) | Scheduled task persistence | 100003 |
 
 ## Repository Structure
 
@@ -129,7 +133,6 @@ See [docs/architecture.md](docs/architecture.md) for the network layout and reso
 
 ## Roadmap
 
-- [ ] Detection for persistence creation (Run keys, scheduled tasks; T1547, T1053)
 - [ ] Detection for LSASS dumping via Sysmon Event ID 10 (T1003.001)
 - [ ] Atomic Red Team integration for reproducible tests
 - [ ] Convert rules to Sigma format
