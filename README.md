@@ -79,7 +79,7 @@ Full list with links: [docs/tools.md](docs/tools.md).
 
 | Technique | ID | Scenario | Detection rule |
 |-----------|----|----------|----------------|
-| Brute Force: Password Guessing | [T1110.001](https://attack.mitre.org/techniques/T1110/001/) | RDP brute force> **Note:** Rule100001also corrects the MITRE mapping for built-in rule60122(Impact -> Credential Access). | 100001 |
+| Brute Force: Password Guessing | [T1110.001](https://attack.mitre.org/techniques/T1110/001/) | RDP brute force> **Note:** Rule 100001 (frequency-based) enriches the built-in rule 60122 with accurate MITRE mapping for brute force (T1110.001) and explicitly categorizes the alert as credential_access.
 | Command and Scripting Interpreter: PowerShell | [T1059.001](https://attack.mitre.org/techniques/T1059/001/) | PowerShell execution | 100002 |
 
 ## Repository Structure
