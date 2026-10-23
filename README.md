@@ -69,6 +69,8 @@ Full list with links: [docs/tools.md](docs/tools.md).
 - [x] Second investigation: [investigations/powershell-execution.md](investigations/powershell-execution.md)
 - [x] Third detection: [detections/scheduled-task-persistence.xml](detections/scheduled-task-persistence.xml)
 - [x] Third investigation: [investigations/scheduled-task-persistence.md](investigations/scheduled-task-persistence.md)
+- [x] Fourth detection: [detections/lsass-credential-dumping.xml](detections/lsass-credential-dumping.xml)
+- [x] Fourth investigation: [investigations/lsass-credential-dumping.md](investigations/lsass-credential-dumping.md)
 
 ## Detections and Investigations
 
@@ -77,6 +79,7 @@ Full list with links: [docs/tools.md](docs/tools.md).
 | RDP brute force | [rdp-brute-force.xml](detections/rdp-brute-force.xml) | [rdp-brute-force.md](investigations/rdp-brute-force.md) | T1110, T1110.001 |
 | PowerShell execution | [powershell-execution.xml](detections/powershell-execution.xml) | [powershell-execution.md](investigations/powershell-execution.md) | T1059.001 |
 | Scheduled task persistence | [scheduled-task-persistence.xml](detections/scheduled-task-persistence.xml) | [scheduled-task-persistence.md](investigations/scheduled-task-persistence.md) | T1053.005 |
+| LSASS credential dumping | [lsass-credential-dumping.xml](detections/lsass-credential-dumping.xml) | [lsass-credential-dumping.md](investigations/lsass-credential-dumping.md) | T1003.001 |
 
 ## MITRE ATT&CK Mapping
 
@@ -85,6 +88,7 @@ Full list with links: [docs/tools.md](docs/tools.md).
 | Brute Force: Password Guessing | [T1110.001](https://attack.mitre.org/techniques/T1110/001/) | RDP brute force> **Note:** Rule 100001 (frequency-based) enriches the built-in rule 60122 with accurate MITRE mapping for brute force (T1110.001) and explicitly categorizes the alert as credential_access.
 | Command and Scripting Interpreter: PowerShell | [T1059.001](https://attack.mitre.org/techniques/T1059/001/) | PowerShell execution | 100002 |
 | Scheduled Task/Job: Scheduled Task | [T1053.005](https://attack.mitre.org/techniques/T1053/005/) | Scheduled task persistence | 100003 |
+| OS Credential Dumping: LSASS Memory | [T1003.001](https://attack.mitre.org/techniques/T1003/001/) | LSASS credential dumping | 100004 |
 
 ## Repository Structure
 
@@ -133,7 +137,6 @@ See [docs/architecture.md](docs/architecture.md) for the network layout and reso
 
 ## Roadmap
 
-- [ ] Detection for LSASS dumping via Sysmon Event ID 10 (T1003.001)
 - [ ] Atomic Red Team integration for reproducible tests
 - [ ] Convert rules to Sigma format
 - [ ] Add a Linux target with a Wazuh agent
