@@ -134,7 +134,7 @@ sudo cat /var/ossec/etc/rules/local_rules.xml | grep -A 12 'id="100004"'
   "mail": true,
   "level": 12,
   "description": "Custom: LSASS Credential Dumping - PROCESS_ALL_ACCESS (MITRE T1003.001)",
-  "groups": ["windows", "sysmon", "credential_access", "credential_access"],
+  "groups": ["windows", "sysmon", "credential_access"],
   "mitre": {
     "technique": ["LSASS Memory"],
     "id": ["T1003.001"],
