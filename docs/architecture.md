@@ -19,7 +19,7 @@ flowchart TB
         subgraph VMNET1["VMnet1 Host-Only 192.168.230.0/24"]
             TGT["Win10 Target<br/>192.168.230.128<br/>Sysmon, Wazuh Agent, RDP :3389"]
             ATK["Kali Attacker<br/>192.168.230.129"]
-            KALI -. "HTTP :80 (PowerShell payload)" .-> WIN
+            TGT -. "HTTP :80 (PowerShell DownloadString)" .-> ATK
         end
     end
 
