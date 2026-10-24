@@ -94,6 +94,9 @@ Full list with links: [docs/tools.md](docs/tools.md).
 
 ## Repository Structure
 
+## Repository Structure
+
+```text
 soc-home-lab/
 ├── README.md
 ├── LICENSE
@@ -113,6 +116,7 @@ soc-home-lab/
 ├── screenshots/
 └── scripts/
     └── update-portproxy.ps1
+```
 
 ## Getting Started
 
