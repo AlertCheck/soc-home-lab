@@ -85,10 +85,12 @@ Full list with links: [docs/tools.md](docs/tools.md).
 
 | Technique | ID | Scenario | Detection rule |
 |-----------|----|----------|----------------|
-| Brute Force: Password Guessing | [T1110.001](https://attack.mitre.org/techniques/T1110/001/) | RDP brute force> **Note:** Rule 100001 (frequency-based) enriches the built-in rule 60122 with accurate MITRE mapping for brute force (T1110.001) and explicitly categorizes the alert as credential_access.
+| Brute Force: Password Guessing | [T1110.001](https://attack.mitre.org/techniques/T1110/001/) | RDP brute force | 100001 |
 | Command and Scripting Interpreter: PowerShell | [T1059.001](https://attack.mitre.org/techniques/T1059/001/) | PowerShell execution | 100002 |
 | Scheduled Task/Job: Scheduled Task | [T1053.005](https://attack.mitre.org/techniques/T1053/005/) | Scheduled task persistence | 100003 |
 | OS Credential Dumping: LSASS Memory | [T1003.001](https://attack.mitre.org/techniques/T1003/001/) | LSASS credential dumping | 100004 |
+
+> **Note:** rule 100001 (frequency-based) enriches the built-in rule 60122 with accurate MITRE mapping for brute force (T1110.001) and explicitly categorizes the alert as `credential_access`.
 
 ## Repository Structure
 
@@ -100,10 +102,14 @@ soc-home-lab/
 │   └── tools.md
 ├── detections/
 │   ├── rdp-brute-force.xml
-│   └── powershell-execution.xml
+│   ├── powershell-execution.xml
+│   ├── scheduled-task-persistence.xml
+│   └── lsass-credential-dumping.xml
 ├── investigations/
 │   ├── rdp-brute-force.md
-│   └── powershell-execution.md
+│   ├── powershell-execution.md
+│   ├── scheduled-task-persistence.md
+│   └── lsass-credential-dumping.md
 ├── screenshots/
 └── scripts/
     └── update-portproxy.ps1
