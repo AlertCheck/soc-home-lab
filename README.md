@@ -120,12 +120,31 @@ soc-home-lab/
 
 ## Getting Started
 
+## Automated Startup
+To avoid manual service management on every reboot, a PowerShell script is provided to start the entire lab infrastructure.
+
+1. Open PowerShell as Administrator.
+2. Navigate to the `scripts/` folder.
+3. Run: `.\start-wazuh.ps1`
+
+**What it does:**
+- Checks WSL2 availability.
+- Starts Wazuh Indexer and waits for it to become ready (green/yellow status).
+- Starts Wazuh Manager and Dashboard.
+- Automatically updates the `netsh portproxy` rules with the new WSL2 IP (calls `update-portproxy.ps1`).
+- Opens the Wazuh Dashboard in your default browser.
+
+> **Note:** The script assumes the repository is located at `D:\SOC-Lab\`. If you cloned it elsewhere, update the hardcoded path to `update-portproxy.ps1` inside `start-wazuh.ps1` before running.
+
 1. **SIEM.** In WSL2 (Ubuntu 24.04) install Wazuh 4.9 using the official quickstart:
 ```bash
    curl -sO https://packages.wazuh.com/4.9/wazuh-install.sh
    sudo bash ./wazuh-install.sh -a
 ```
-2. **Port forwarding.** On the Windows host, run [scripts/update-portproxy.ps1](scripts/update-portproxy.ps1) as Administrator (re-run it after every WSL restart).
+2. **Port forwarding.** On the Windows host, run scripts/update-portproxy.ps1 as Administrator (re-run it after every WSL restart).
+
+**Note:**  Ensure Windows Firewall allows inbound connections on TCP ports 1514, 1515, 55000, and 443 from the VMnet1 subnet (192.168.230.0/24), otherwise VMs will not be able to reach Wazuh.
+
 3. **Target.** On the Windows 10 VM install Sysmon with the SwiftOnSecurity config:
 ```powershell
    sysmon64.exe -accepteula -i sysmonconfig.xml
@@ -141,9 +160,10 @@ See [docs/architecture.md](docs/architecture.md) for the network layout and reso
 
 ## Lessons Learned
 
-- The WSL2 IP changes on every restart, so static port forwarding breaks silently. Recreating the `netsh portproxy` rules with a script fixed it.
-- `networkingMode=mirrored` is not available on Windows 10, so NAT plus portproxy is the only way for VMs to reach Wazuh inside WSL2.
-- With 16 GB of RAM the lab has almost no headroom; VMs have to be started selectively.
+- The WSL2 IP changes on every restart, so static port forwarding breaks silently. Recreating the netsh portproxy rules with a script fixed it.
+- networkingMode=mirrored is not available on Windows 10, so NAT plus portproxy is the only way for VMs to reach Wazuh inside WSL2.
+- With 16 GB of RAM the lab has almost no headroom; VMs have to be started selectively (32 GB is recommended for running all VMs simultaneously).
+- Leveraged LLMs (AI assistants) to accelerate infrastructure setup and rule syntax drafting. This allowed me to focus on the investigation logic, tuning, and MITRE ATT&CK mapping rather than getting stuck on XML syntax.
 
 ## Roadmap
 
