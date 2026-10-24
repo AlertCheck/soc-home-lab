@@ -129,15 +129,15 @@ sudo grep -A 8 'id="100002"' /var/ossec/etc/rules/local_rules.xml
 ### 4.8 Screenshots
 
 | # | Description | File |
-|---|-------------|------|
-| 1 | PowerShell prompt on the target, before the attack | `../screenshots/ps-01-before-attack.png` |
-| 2 | Attack command run and its failure (WebException) | `../screenshots/ps-02-attack-command.png` |
-| 3 | Wazuh Discover: raw Event 4104 hits | `../screenshots/ps-03-4104.png` |
-| 4 | Rule 91837 alert detail (built-in) | `../screenshots/ps-04-wazuh-alert.png` |
-| 5 | Event 4104 detail via `Get-WinEvent` | `../screenshots/ps-05-event-4104.png` |
-| 6 | Wazuh Discover: `rule.id:100002` hits | `../screenshots/ps-06-alert-100002.png` |
-| 7 | Rule 100002 alert detail (JSON) | `../screenshots/ps-07-rule-100002-detail.png` |
-| 8 | Custom rule 100002 as deployed in `local_rules.xml` | `../screenshots/ps-08-custom-rule.png` |
+|---|---|---|
+| 1 | Initial state before the attack | [ps-01-before-attack.png](../screenshots/ps-01-before-attack.png) |
+| 2 | PowerShell attack command execution | [ps-02-attack-command.png](../screenshots/ps-02-attack-command.png) |
+| 3 | Windows Event 4104 (PowerShell Script Block Logging) | [ps-03-4104.png](../screenshots/ps-03-4104.png) |
+| 4 | Wazuh Alert triggered (Custom Rule 100002) | [ps-04-wazuh-alert.png](../screenshots/ps-04-wazuh-alert.png) |
+| 5 | Event 4104 Details | [ps-05-event-4104.png](../screenshots/ps-05-event-4104.png) |
+| 6 | Wazuh Discover: `rule.id:100002` hits | [ps-06-alert-100002.png](../screenshots/ps-06-alert-100002.png) |
+| 7 | Rule 100002 alert detail (JSON) | [ps-07-rule-100002-detail.png](../screenshots/ps-07-rule-100002-detail.png) |
+| 8 | Custom rule 100002 as deployed in `local_rules.xml` | [ps-08-custom-rule.png](../screenshots/ps-08-custom-rule.png) |
 
 ## 5. IOCs
 
