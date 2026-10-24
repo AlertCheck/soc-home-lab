@@ -113,21 +113,21 @@ rule.id: 100001
 ### 4.8 Screenshots
 
 | # | Description | File |
-|---|-------------|------|
-| 1 | Connectivity check: ping to the target | `../screenshots/01-ping.png` |
-| 2 | nmap confirming RDP (3389) open on the target | `../screenshots/02-nmap.png` |
-| 3 | Password list built from rockyou.txt (50 entries) | `../screenshots/03-dictionary.png` |
-| 4 | Hydra attack in progress | `../screenshots/04-hydra-running.png` |
-| 5 | Hydra aborting due to NLA (connection errors) | `../screenshots/05-hydra-finished.png` |
-| 6 | Wazuh Discover: raw Event 4625 hits (30 in the search window) | `../screenshots/06-events-4625.png` |
-| 7 | Wazuh Discover: `rule.id:60122` hits | `../screenshots/07-rule-60122.png` |
-| 8 | Rule 60122 alert detail (JSON) — default MITRE mapping T1531 | `../screenshots/08-alert-detail.png` |
-| 9 | MITRE ATT&CK dashboard, tactics overview | `../screenshots/09-mitre.png` |
-| 10 | Windows Event Viewer, Event 4625 detail (LogonType 3) | `../screenshots/10-event-4625-detail.png` |
-| 11 | Custom rule 100001 as deployed in `local_rules.xml` | `../screenshots/11-custom-rule.png` |
-| 12 | Wazuh Discover: `rule.id:100001` hits | `../screenshots/12-rule-100001.png` |
-| 13 | Rule 100001 alert detail (JSON) — corrected MITRE mapping T1110/T1110.001 | `../screenshots/13-rule-100001-detail.png` |
-| 14 | MITRE ATT&CK Framework view, T1110 / T1110.001 technique counts | `../screenshots/14-mitre-with-t1110.png` |
+|---|---|---|
+| 1 | Connectivity check: ping to the target | [01-ping.png](../screenshots/01-ping.png) |
+| 2 | nmap confirming RDP (3389) open on the target | [02-nmap.png](../screenshots/02-nmap.png) |
+| 3 | Password list built from rockyou.txt (50 entries) | [03-dictionary.png](../screenshots/03-dictionary.png) |
+| 4 | Hydra attack in progress | [04-hydra-running.png](../screenshots/04-hydra-running.png) |
+| 5 | Hydra aborting due to NLA (connection errors) | [05-hydra-finished.png](../screenshots/05-hydra-finished.png) |
+| 6 | Wazuh Discover: raw Event 4625 hits (30 in the search window) | [06-events-4625.png](../screenshots/06-events-4625.png) |
+| 7 | Wazuh Discover: `rule.id:60122` hits | [07-rule-60122.png](../screenshots/07-rule-60122.png) |
+| 8 | Rule 60122 alert detail (JSON) — default MITRE mapping T1531 | [08-alert-detail.png](../screenshots/08-alert-detail.png) |
+| 9 | MITRE ATT&CK dashboard, tactics overview | [09-mitre.png](../screenshots/09-mitre.png) |
+| 10 | Windows Event Viewer, Event 4625 detail (LogonType 3) | [10-event-4625-detail.png](../screenshots/10-event-4625-detail.png) |
+| 11 | Custom rule 100001 as deployed in `local_rules.xml` | [11-custom-rule.png](../screenshots/11-custom-rule.png) |
+| 12 | Wazuh Discover: `rule.id:100001` hits | [12-rule-100001.png](../screenshots/12-rule-100001.png) |
+| 13 | Rule 100001 alert detail (JSON) — corrected MITRE mapping T1110/T1110.001 | [13-rule-100001-detail.png](../screenshots/13-rule-100001-detail.png) |
+| 14 | MITRE ATT&CK Framework view, T1110 / T1110.001 technique counts | [14-mitre-with-t1110.png](../screenshots/14-mitre-with-t1110.png) |
 
 ## 5. IOCs
 
