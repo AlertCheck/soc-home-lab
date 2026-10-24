@@ -17,7 +17,7 @@ Wazuh correlated the resulting burst of failed logons with custom rule **100001*
 
 **Verdict:** brute-force attempt detected; NLA prevented the attack from completing. No compromise observed in this run.
 
-## 2. Timeline (UTC — convert from your tool's local display before filling in)
+## 2. Timeline
 
 | Time | Source | Event |
 |------|--------|-------|
@@ -146,7 +146,7 @@ rule.id: 100001
 | 60122 (built-in) | 5 | Single Windows logon failure, unknown user or bad password |
 | 100001 (custom) | 12 | 5 or more hits of rule 60122 within 300 seconds, re-tagged with T1110 / T1110.001 |
 
-**Assessment:** the correlation rule fired `<n>` times during the run, confirming the burst of failed logons was caught even though the underlying attack never reached a full RDP session.
+**Assessment:** the correlation rule fired 2 times during the run, confirming the burst of failed logons was caught even though the underlying attack never reached a full RDP session.
 
 ## 7. Lessons Learned
 
