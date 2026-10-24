@@ -180,7 +180,6 @@ sudo cat /var/ossec/etc/rules/local_rules.xml | grep -A 12 'id="100004"'
 - The stock SwiftOnSecurity Sysmon config does not log `ProcessAccess` events for `lsass.exe` out of the box — any LSASS-focused detection in this lab (or elsewhere using this baseline config) needs that `TargetImage` explicitly added to the include filter first, or the telemetry simply won't exist to alert on.
 - LSA Protection (`RunAsPPL`) genuinely blocks this access pattern when enabled — disabling it here was a deliberate lab choice to make the technique reproducible, not a configuration to recommend in production (see Recommendations, which argue the opposite).
 - Relying on a built-in rule's fixed access-mask list is risky in both directions: it missed this technique's actual mask (`0x1FFFFF`) and separately produced a false positive on legitimate `svchost.exe` activity. A custom rule scoped to the specific mask and a short exclusion list for known-legitimate callers proved more precise than either widening or trusting the built-in rule alone.
-- The alert JSON for rule 100004 lists `credential_access` twice in its `groups` array — a cosmetic duplication caused by the group being applied both via the enclosing `<group name="...credential_access,">` wrapper and the inner `<group>credential_access</group>` tag on the rule itself. Harmless, but worth removing the redundant inner tag for a cleaner rule definition.
 - The lab-wide clock-sync issue flagged after the RDP brute-force case (Kali's unsynced clock) is still unresolved — this case's events show smaller but still-present timestamp drift between Dashboard display time and each event's own `utcTime` field. NTP sync across the lab remains open work.
 
 ## 8. Recommendations
@@ -191,5 +190,4 @@ sudo cat /var/ossec/etc/rules/local_rules.xml | grep -A 12 'id="100004"'
 | High | Extend Sysmon's `ProcessAccess` include filter to cover `lsass.exe` on any host where credential-dumping detection matters; it is not logged by default |
 | Medium | Add Credential Guard or an EDR-level LSASS protection control as defense in depth, rather than relying on SIEM detection alone for this technique |
 | Medium | Periodically review which processes are excluded in rule 100004's negated `sourceImage` list, since an overly broad exclusion list could itself become a detection gap |
-| Low | Remove the redundant inner `<group>credential_access</group>` tag from rule 100004 |
 | Low | Apply the still-outstanding NTP sync recommendation from the RDP brute-force investigation across all lab VMs |
