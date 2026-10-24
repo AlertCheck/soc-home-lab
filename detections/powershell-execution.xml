@@ -34,8 +34,8 @@
     - PowerShell Script Block Logging (Event 4104) still logged the full
       command text before execution was attempted, so detection did not
       depend on the download succeeding.
-    - Custom rule 100002 fired once during the test (confirmed in the
-      alert JSON, firedtimes: 1).
+    - Custom rule 100002 fired twice during the test (confirmed in the
+      alert JSON, firedtimes: 2), once for each command variant.
 
   Investigation: ../investigations/powershell-execution.md
 
