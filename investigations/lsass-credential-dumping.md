@@ -149,13 +149,13 @@ sudo cat /var/ossec/etc/rules/local_rules.xml | grep -A 12 'id="100004"'
 ### 4.7 Screenshots
 
 | # | Description | File |
-|---|-------------|------|
-| 1 | PowerShell attack script execution, `Handle: 1404` returned | `../screenshots/lsass-01-powershell-attack.png` |
-| 2 | Windows Event Viewer, Sysmon Event 10 detail (`TargetImage: lsass.exe`, `GrantedAccess: 0x1fffff`) | `../screenshots/lsass-02-sysmon-event10.png` |
-| 3 | Wazuh Discover, `rule.id: 92900` false positive on `svchost.exe` | `../screenshots/lsass-03-wazuh-fp-svchost.png` |
-| 4 | Custom rule 100004 as deployed in `local_rules.xml` | `../screenshots/lsass-04-custom-rule.png` |
-| 5 | Wazuh Discover, `rule.id: 100004` successful alert | `../screenshots/lsass-05-wazuh-alert.png` |
-| 6 | Rule 100004 alert detail (JSON) with MITRE tags | `../screenshots/lsass-06-wazuh-json-details.png` |
+|---|---|---|
+| 1 | PowerShell attack command execution | [lsass-01-powershell-attack.png](../screenshots/lsass-01-powershell-attack.png) |
+| 2 | Sysmon Event ID 10 (Process Access) details | [lsass-02-sysmon-event10.png](../screenshots/lsass-02-sysmon-event10.png) |
+| 3 | Wazuh alert for `fp-svchost` process access | [lsass-03-wazuh-fp-svchost.png](../screenshots/lsass-03-wazuh-fp-svchost.png) |
+| 4 | Custom rule 100004 configuration in `local_rules.xml` | [lsass-04-custom-rule.png](../screenshots/lsass-04-custom-rule.png) |
+| 5 | Wazuh Alert triggered (Rule 100004) | [lsass-05-wazuh-alert.png](../screenshots/lsass-05-wazuh-alert.png) |
+| 6 | Rule 100004 alert detail (JSON) | [lsass-06-wazuh-json-details.png.png](../screenshots/lsass-06-wazuh-json-details.png) |
 
 ## 5. IOCs
 
