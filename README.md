@@ -115,6 +115,7 @@ soc-home-lab/
 │   └── lsass-credential-dumping.md
 ├── screenshots/
 └── scripts/
+    ├── start-wazuh.ps1
     └── update-portproxy.ps1
 ```
 
