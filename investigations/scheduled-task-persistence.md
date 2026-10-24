@@ -109,12 +109,12 @@ sudo grep -A 8 'id="100003"' /var/ossec/etc/rules/local_rules.xml
 ### 4.6 Screenshots
 
 | # | Description | File |
-|---|-------------|------|
-| 1 | Task creation command and success confirmation | `../screenshots/sched-task-01-schtasks-create.png` |
-| 2 | Sysmon Event 1 detail for the `schtasks.exe` process | `../screenshots/sched-task-02-sysmon-event1.png` |
-| 3 | Wazuh Discover: `rule.id:100003` hits | `../screenshots/sched-task-03-rule-100003-alert.png` |
-| 4 | Rule 100003 alert detail (JSON) | `../screenshots/sched-task-04-rule-100003-detail.png` |
-| 5 | Custom rule 100003 as deployed in `local_rules.xml` | `../screenshots/sched-task-05-custom-rule-config.png` |
+|---|---|---|
+| 1 | Scheduled Task creation command execution (`schtasks.exe`) | [sched-task-01-schtasks-create.png](../screenshots/sched-task-01-schtasks-create.png) |
+| 2 | Sysmon Event ID 1 (Process Creation) details | [sched-task-02-sysmon-event1.png](../screenshots/sched-task-02-sysmon-event1.png) |
+| 3 | Wazuh Alert triggered (Custom Rule 100003) | [sched-task-03-rule-100003-alert.png](../screenshots/sched-task-03-rule-100003-alert.png) |
+| 4 | Rule 100003 alert detail (JSON) | [sched-task-04-rule-100003-detail.png](../screenshots/sched-task-04-rule-100003-detail.png) |
+| 5 | Custom rule 100003 configuration in `local_rules.xml` | [sched-task-05-custom-rule-config.png](../screenshots/sched-task-05-custom-rule-config.png) |
 
 ## 5. IOCs
 
