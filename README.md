@@ -36,8 +36,7 @@ flowchart LR
 
     KALI -- "RDP brute-force simulation :3389" --> WIN
     WIN -- "agent events :1514" --> PP
-    ANALYST(("Analyst")) -- "https://localhost" --> PP
-```
+    ANALYST(("Analyst")) -- "https://127.0.0.1" --> PP
 
 Details: [docs/architecture.md](docs/architecture.md).
 
