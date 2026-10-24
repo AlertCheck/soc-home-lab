@@ -90,7 +90,7 @@ Note the default mapping to T1531 (Account Access Removal), which is corrected b
 
 ```json
 "rule": {
-  "firedtimes": <n>,
+  "firedtimes": 2,
   "level": 12,
   "description": "Custom: RDP Brute Force Attack Detected (MITRE T1110)",
   "mitre": {
