@@ -181,14 +181,6 @@ See [docs/architecture.md](docs/architecture.md) for the network layout and reso
 - With 16 GB of RAM, there is little headroom when running the full lab. VMs need to be started selectively; 32 GB is recommended if you want to run all VMs simultaneously.
 - LLM-based assistants helped accelerate infrastructure setup and draft rule syntax. This left more time for investigation logic, detection tuning, and MITRE ATT&CK mapping.
 
-## Roadmap
-
-- [ ] Integrate Atomic Red Team for reproducible tests
-- [ ] Convert Wazuh rules to Sigma format
-- [ ] Add a Linux target with a Wazuh Agent
-- [ ] Configure Active Response to block the source of a brute-force simulation
-- [ ] Build Wazuh dashboards for lab scenarios
-
 ## Lab Safety
 
 - The VMnet1 network is isolated (Host-Only); targets have no outbound access through this segment.
